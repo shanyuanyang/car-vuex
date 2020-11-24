@@ -1,20 +1,30 @@
 <template>
   <div>
     cart
-    <p>{{car}}</p>
+    <ul>
+      <li
+        v-for="item in cartProducts"
+        :key="item.id"
+      >
+        <span>{{item.name}}</span>
+        ---
+        <span>{{item.price}}</span>
+        *
+        <span>{{item.quantity}}</span>
+      </li>
+    </ul>
+    <p>总价格：{{totlePrice}}</p>
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {};
   },
   created() {},
   computed: {
-    ...mapState("cart", {
-      car: "car",
-    }),
+    ...mapGetters("cart", ["cartProducts", "totlePrice"]),
   },
   methods: {},
 };
